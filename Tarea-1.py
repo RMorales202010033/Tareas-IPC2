@@ -42,12 +42,14 @@ class lista_enlazada:
     while actual.Siguiente:
       actual = actual.Siguiente
     actual.Siguiente = Nodo(Estudiante = Estudiante)
+  
   def recorrer(self):
     actual = self.Primero
     while actual != None:
       print(f'Carnet: {actual.Estudiante.Carnet}; Nombre: {actual.Estudiante.Nombre}; Email: {actual.Estudiante.Email} ->')
       actual = actual.Siguiente
 
+  
   def eliminar(self, Carnet):
     actual = self.Primero
     anterior = None
@@ -60,6 +62,17 @@ class lista_enlazada:
     elif actual:
       anterior.Siguiente = actual.Siguiente
       actual.Siguiente = None
+
+  def buscar(self, Carnet):
+    actual = self.Primero
+    pos = 0
+    while actual and actual.Estudiante.Carnet != Carnet:
+      actual = actual.Siguiente
+      pos += 1
+    if actual is None:
+      print("No se encontró al estudiante.\n")
+    else:
+      print(f'El estudiante se encuentra en la posición: {pos}\nDatos del Estudiante Encontrado:\nCarnet: {actual.Estudiante.Carnet};\nNombre: {actual.Estudiante.Nombre};\nEdad: {actual.Estudiante.Edad};\nDirección: {actual.Estudiante.Address};\nTeléfono: {actual.Estudiante.Phone};\nEmail: {actual.Estudiante.Email};\nCarrera: {actual.Estudiante.Carrera};\nPuesto: {actual.Estudiante.Puesto}\n')
 
 """**Creación de objetos Estudiante**"""
 
@@ -82,3 +95,9 @@ lista_e.recorrer()
 
 lista_e.eliminar(201015060)
 lista_e.recorrer()
+
+"""**Buscar un Nodo de la lista**"""
+
+lista_e.buscar(201015050)
+lista_e.buscar(201015060)
+lista_e.buscar(201015061)
